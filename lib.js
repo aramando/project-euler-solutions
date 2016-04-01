@@ -8,22 +8,24 @@ function isPrime(num){
     if(num < 2){
         return false;
     }
-    for(var i = 2, n = (Math.ceil(num / 2); , < n; i++){
+    for(var i = 2, n = Math.ceil(num / 2); i <= n; i++){
         if(num / i === Math.trunc(num / i)){
             return false;
         }
     }
+    return true;
 }
 
 
 function getPrimes(upTo){
-    var str = '';
+    upTo = upTo || 10;
+    var primes = [];
     for(var i = 1; i <= upTo; i++){
         if(isPrime(i)){
-            str += i + ', ';
+            primes.push(i);
         }
     }
-    return str.substr(-2);
+    return primes;    
 }
 
 

@@ -1,23 +1,11 @@
-var solution = true, 
-    p = 1;
+var fs = require('fs');
 
-while(solution){
-    try{
-        solution = require(`./solutions/${leftPad(p, 4)}.js`);
-        console.log(`Problem ${p}: ` + solution());
-        p++;
-    }
-    catch(e){
-        solution = null;  
-    }
-} 
+var modules = fs.readdirSync('./solutions');
 
+modules.forEach(module => {
 
+    var answer = require(`./solutions/${module}`)();    
 
-function leftPad(num, length){
-    var str = String(num);
-    while(str.length < length){
-        str = '0' + str;
-    }
-    return str;
-}
+    console.log(`${module.slice(0, -3)}: ${answer}`);
+
+});
