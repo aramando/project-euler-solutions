@@ -12,10 +12,40 @@
 
 module.exports = function(){
 
-    return;
+    var a = 999;
+    var b = 999;
+    var p = [];
+    var lowerBound = 899;
 
-    var largest = 999 * 999;
-    var smallest = 100 * 100;
+    while(lowerBound > 100 && !p.length){
+        while(a > lowerBound){
+            while(b > lowerBound){
+                if(isPalindrome(a*b)){           
+                    p.push(a*b);
+                }
+                b--;
+            }
+            b = 999;
+            a--;                  
+        }
+        lowerBound -= 100;
+    }    
+
+    p.sort((a,b) => a-b);
+    return p.slice(-1);
+
+    function isPalindrome(num){
+        var numStr = num.toString();
+        var l = numStr.length - 1,
+            i = Math.floor(l / 2);
+        while(i >= 0){
+            if(numStr[i] !== numStr[l - i]){
+                return false;
+            }
+            i--;
+        }
+        return true;
+    }
 
 
 
