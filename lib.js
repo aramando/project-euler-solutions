@@ -1,6 +1,7 @@
 module.exports = {
     isPrime,
     getPrimes,
+    nextPrime,
     leftPad
 };
 
@@ -9,7 +10,7 @@ function isPrime(num){
         return false;
     }
     for(var i = 2, n = Math.ceil(num / 2); i <= n; i++){
-        if(num / i === Math.trunc(num / i)){
+        if(Number.isInteger(num / i)){
             return false;
         }
     }
@@ -17,10 +18,19 @@ function isPrime(num){
 }
 
 
-function getPrimes(upTo){
-    upTo = upTo || 10;
+function nextPrime(n){
+    n++;
+    while(!isPrime(n)){
+        n++;
+    }
+    return n;
+}
+
+
+function getPrimes(to, from){
+    to = to || 10;
     var primes = [];
-    for(var i = 1; i <= upTo; i++){
+    for(var i = from || 1; i <= to; i++){
         if(isPrime(i)){
             primes.push(i);
         }
